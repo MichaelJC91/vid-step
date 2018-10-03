@@ -1,28 +1,40 @@
-.App {
-  text-align: center;
+.player-wrapper {
+    position: relative;
+    padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.step-avatar {
+    color: #fff!important;
+    background-color: #a8cf45!important;
 }
 
-.App-title {
-  font-size: 1.5em;
+.list-wrapper {
+    z-index: 10000;
+    overflow: scroll;
+    max-height: 36vh;
+    background: #fbfbfb;
 }
 
-.App-intro {
-  font-size: large;
+.card-step-rating-wrapper {
+    padding-bottom: 0!important;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.video-card {
+    box-shadow: none!important;
+}
+
+.video-card .comment-section .add-comment,
+.video-card .comment-section .single-comment {
+    display: flex;
+    padding-top: 16px;
+}
+
+.video-card .comment-section .card-avatar {
+    margin-right: 16px;
 }
