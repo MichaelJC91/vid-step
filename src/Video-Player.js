@@ -33,7 +33,8 @@ class VideoPlayer extends Component {
             currentStep: {
                 stepNumber: 1,
                 stepTitle: "Prepare ingerdients",
-                stepDescription: "The ingredients needed are: bread, banana, honey, and peanut butter."
+                stepDescription: "The ingredients needed are: bread, banana, honey, and peanut butter.",
+                stepTime: 17
             },
             steps: [
                 {
@@ -54,7 +55,7 @@ class VideoPlayer extends Component {
                     stepNumber: 3,
                     stepTitle: "Spread 1 tablespoon of peanut butter",
                     description: "Spread your desired amount of peanut butter over your bread.",
-                    startTime: 118,
+                    startTime: 117,
                     endTime: 138
                 },
                 {
@@ -93,33 +94,50 @@ class VideoPlayer extends Component {
          });
     }
 
-    onStepClickTwo = () => {
-        this.player.seekTo(100);
-        this.setState({ 
-            isPlaying: true
-         });
-    }
-
     ref = player => {
         this.player = player
     }
 
     nextStep() {
-        this.setState(state => ({ 
-            currentStep: {
-                ...state.currentStep,
-                stepNumber: state.currentStep.stepNumber + 1
+
+        let currentStep = this.state.currentStep.stepNumber;
+        let nextStep = currentStep + 1;
+
+        _.map(this.state.steps, (step) => {
+            if(nextStep === step.stepNumber) {
+                this.setState(state => ({
+                    currentStep: {
+                        ...state.currentStep,
+                        stepNumber: nextStep,
+                        stepTitle: step.stepTitle,
+                        stepDescription: step.description,
+                    }
+                }));
+
+                this.onStepClick(step.startTime);
             }
-        }));
+        });
     }
 
     previousStep() {
-        this.setState(state => ({ 
-            currentStep: {
-                ...state.currentStep,
-                stepNumber: state.currentStep.stepNumber - 1
+
+        let currentStep = this.state.currentStep.stepNumber;
+        let nextStep = currentStep - 1;
+
+        _.map(this.state.steps, (step) => {
+            if(nextStep === step.stepNumber) {
+                this.setState(state => ({
+                    currentStep: {
+                        ...state.currentStep,
+                        stepNumber: nextStep,
+                        stepTitle: step.stepTitle,
+                        stepDescription: step.description,
+                    }
+                }));
+
+                this.onStepClick(step.startTime);
             }
-        }));
+        });
     }
 
     createList() {
@@ -142,8 +160,28 @@ class VideoPlayer extends Component {
         )
     }
 
-    render() {
+    progressPlayed({ playedSeconds }) {
 
+        let videoSeconds = Math.floor(playedSeconds)
+
+        _.map(this.state.steps, (step) => {
+            if(videoSeconds === step.startTime) {
+
+                this.setState(state => ({
+                    currentStep: {
+                        ...state.currentStep,
+                        stepNumber: step.stepNumber,
+                        stepTitle: step.stepTitle,
+                        stepDescription: step.description,
+                    }
+                }));
+                
+            }
+        });
+
+    }
+
+    render() {
         return (
             <div>
                 <Grid container spacing={0}>
@@ -156,12 +194,13 @@ class VideoPlayer extends Component {
                                 width='100%'
                                 height='100%'
                                 playing={this.state.isPlaying}
+                                onProgress={ (e) => this.progressPlayed(e) }
                             />
                         </div>
                     </Grid>
                     <Grid item xs={12}>
                         <ListItem button onClick={this.handleClick}>
-                            <ListItemText primary="How to make peanut butter toast" secondary="5 Steps" />
+                            <ListItemText primary="How to make peanut butter toast" secondary="6 Steps" />
                             {this.state.open ? <ExpandLess /> : <ExpandMore />}
                         </ListItem>
                         <Divider light />
