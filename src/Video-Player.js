@@ -30,6 +30,8 @@ class VideoPlayer extends Component {
         this.state = {
             open: true,
             isPlaying: null,
+            isThumbsDown: false,
+            isThumbsUp: false,
             currentStep: {
                 stepNumber: 1,
                 stepTitle: "Prepare ingerdients",
@@ -188,6 +190,22 @@ class VideoPlayer extends Component {
 
     }
 
+    thumbsUp() {
+        this.setState(state => ({ isThumbsUp: !state.isThumbsUp }));
+
+        if(this.state.isThumbsDown) {
+            this.setState(state => ({ isThumbsDown: false }));
+        }
+    }
+
+    thumbsDown() {
+        this.setState(state => ({ isThumbsDown: !state.isThumbsDown }));
+        
+        if(this.state.isThumbsUp) {
+            this.setState(state => ({ isThumbsUp: false }));
+        }
+    }
+
     render() {
         return (
             <div>
@@ -251,10 +269,10 @@ class VideoPlayer extends Component {
                                 </Typography>
                             </CardContent>
                             <CardActions disableActionSpacing>
-                                <IconButton aria-label="Add to favorites">
+                                <IconButton aria-label="Add to favorites" onClick={this.thumbsUp.bind(this)} style={ this.state.isThumbsUp ? { color: "#0eab55" } : {} } >
                                     <ThumbUp />
                                 </IconButton>
-                                <IconButton aria-label="Share">
+                                <IconButton aria-label="Share" onClick={this.thumbsDown.bind(this)} style={ this.state.isThumbsDown ? { color: "#F44336" } : {} } >
                                     <ThumbDown />
                                 </IconButton>
                             </CardActions>
