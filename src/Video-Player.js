@@ -83,6 +83,8 @@ class VideoPlayer extends Component {
         };
     }
 
+
+
     handleClick = () => {
         this.setState(state => ({ open: !state.open }));
     };
@@ -145,12 +147,17 @@ class VideoPlayer extends Component {
             _.map(this.state.steps, ({ stepNumber, stepTitle, description, startTime }) => {
                 return (
                     <Collapse in={this.state.open} timeout="auto" unmountOnExit key={stepNumber}>
-                        <List component="div" disablePadding className="step-list-single">
+                        <List 
+                            component="div"
+                            disablePadding
+                            className="step-list-single"
+                            style={ stepNumber === this.state.currentStep.stepNumber ? { background: "#0eab55" } : { background: "none" } }   
+                            >
                             <ListItem button onClick = {() => this.onStepClick(startTime)}>
                                 <ListItemIcon className="step-icon">
-                                    <Avatar className="step-avatar">{stepNumber}</Avatar>
+                                    <Avatar className={ stepNumber === this.state.currentStep.stepNumber ? "current-step-avatar" : "step-avatar" }>{stepNumber}</Avatar>
                                 </ListItemIcon>
-                                <ListItemText inset primary={stepTitle} secondary={description} />
+                                <ListItemText className={ stepNumber === this.state.currentStep.stepNumber ? "current-step-font" : "" } inset primary={stepTitle} secondary={description} />
                             </ListItem>
                             <Divider light />
                         </List>

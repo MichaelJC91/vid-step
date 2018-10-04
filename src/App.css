@@ -11,14 +11,15 @@
 
 .step-avatar {
     color: #fff!important;
-    background-color: #a8cf45!important;
+    background-color: #0eab55!important;
 }
 
 .list-wrapper {
     z-index: 10000;
-    overflow: scroll;
+    overflow-y: scroll;
     max-height: 36vh;
     background: #fbfbfb;
+    overflow-x: hidden;
 }
 
 .card-step-rating-wrapper {
@@ -37,4 +38,14 @@
 
 .video-card .comment-section .card-avatar {
     margin-right: 16px;
+}
+
+.current-step-font p,
+.current-step-font span {
+    color: #fff!important;
+}
+
+.current-step-avatar {
+    color: rgba(0, 0, 0, 0.54)!important;
+    background-color: #ffffff!important;
 }
