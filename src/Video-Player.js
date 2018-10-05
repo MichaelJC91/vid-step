@@ -17,10 +17,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ThumbDown from '@material-ui/icons/ThumbDown';
+import SendIcon from '@material-ui/icons/Send';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import CardActions from '@material-ui/core/CardActions';
-import Input from '@material-ui/core/Input';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
 
 class VideoPlayer extends Component {
 
@@ -38,6 +40,17 @@ class VideoPlayer extends Component {
                 stepDescription: "The ingredients needed are: bread, banana, honey, and peanut butter.",
                 stepTime: 17
             },
+            addComment: "",
+            comments: [
+                {
+                    name: "Michael Carniato",
+                    commentBody: "Lorem Ipsum is simply dummy text of the printing and typesetting industry." 
+                },
+                {
+                    name: "Peter Reginald",
+                    commentBody: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."   
+                }
+            ],
             steps: [
                 {
                     stepNumber: 1,
@@ -206,6 +219,50 @@ class VideoPlayer extends Component {
         }
     }
 
+    updateComment(event) {
+
+        let comment = event.target.value;
+
+        if(event.target.value !== null) {
+            this.setState(state => ({ addComment: comment }));
+        }
+    }
+
+    createComment() {
+
+        this.setState(state => ({
+            comments: [...this.state.comments, { name: "Michael Carniato", commentBody: this.state.addComment } ]
+          }));
+
+          this.setState(state => ({ addComment: "" }));
+
+    }
+
+    renderComments() {
+        return (
+            _.map(this.state.comments, (comment, index) => {
+                return (
+                    <div key={index}>
+                        <CardContent className="comment-section">
+                            <div className="single-comment">
+                                <Avatar className="card-avatar">M</Avatar>
+                                <div className="comment-content">
+                                    <Typography variant="caption">
+                                        { comment.name }
+                                    </Typography>
+                                    <Typography paragraph={true}>
+                                        { comment.commentBody }
+                                    </Typography>
+                                </div>
+                            </div>
+                        </CardContent>
+                        <Divider light/>
+                    </div>
+                )
+            })
+        )
+    }
+
     render() {
         return (
             <div>
@@ -283,41 +340,21 @@ class VideoPlayer extends Component {
                                 </Typography>
                                 <div className="add-comment">
                                     <Avatar className="card-avatar">M</Avatar>
-                                    <Input
+                                    <TextField
                                         placeholder="Add comment"
                                         multiline={true}
                                         style={{ flexGrow: 1 }}
+                                        onChange={ (e) => this.updateComment(e) }
+                                        value={this.state.addComment}
+                                        disableUnderline={true}
                                     />
+                                    <IconButton>
+                                        <SendIcon style={{ color: "#3f51b5" }} onClick={this.createComment.bind(this)} />
+                                    </IconButton>
                                 </div>
                             </CardContent>
                             <Divider light />
-                            <CardContent className="comment-section">
-                                <div className="single-comment">
-                                    <Avatar className="card-avatar">M</Avatar>
-                                    <div className="comment-content">
-                                        <Typography variant="caption">
-                                            Michael Carniato
-                                        </Typography>
-                                        <Typography paragraph={true}>
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                        </Typography>
-                                    </div>
-                                </div>
-                            </CardContent>
-                            <Divider light />
-                            <CardContent className="comment-section">
-                                <div className="single-comment">
-                                    <Avatar className="card-avatar">P</Avatar>
-                                    <div className="comment-content">
-                                        <Typography variant="caption">
-                                            Peter Reginald
-                                        </Typography>
-                                        <Typography paragraph={true}>
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                        </Typography>
-                                    </div>
-                                </div>
-                            </CardContent>
+                            {this.renderComments()}
                         </Card>
                     </Grid>
                 </Grid>
