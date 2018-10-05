@@ -277,6 +277,7 @@ class VideoPlayer extends Component {
                                 height='100%'
                                 playing={this.state.isPlaying}
                                 onProgress={ (e) => this.progressPlayed(e) }
+                                controls={true}
                             />
                         </div>
                     </Grid>
