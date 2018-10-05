@@ -322,7 +322,7 @@ class VideoPlayer extends Component {
                             <Divider light />
                             <CardContent className="card-step-rating-wrapper">
                                 <Typography variant="subheading">
-                                    Was this step clear?
+                                    Was this process clear?
                                 </Typography>
                             </CardContent>
                             <CardActions disableActionSpacing>
