@@ -184,7 +184,7 @@ class VideoPlayer extends Component {
 
     progressPlayed({ playedSeconds }) {
 
-        let videoSeconds = Math.floor(playedSeconds)
+        let videoSeconds = Math.floor(playedSeconds);
 
         _.map(this.state.steps, (step) => {
             if(videoSeconds === step.startTime) {
@@ -347,7 +347,6 @@ class VideoPlayer extends Component {
                                         style={{ flexGrow: 1 }}
                                         onChange={ (e) => this.updateComment(e) }
                                         value={this.state.addComment}
-                                        disableUnderline={true}
                                     />
                                     <IconButton>
                                         <SendIcon style={{ color: "#3f51b5" }} onClick={this.createComment.bind(this)} />
