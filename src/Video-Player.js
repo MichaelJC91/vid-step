@@ -22,7 +22,6 @@ import ThumbUp from '@material-ui/icons/ThumbUp';
 import CardActions from '@material-ui/core/CardActions';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
 
 class VideoPlayer extends Component {
 
@@ -232,7 +231,7 @@ class VideoPlayer extends Component {
 
         this.setState(state => ({
             comments: [...this.state.comments, { name: "Michael Carniato", commentBody: this.state.addComment } ]
-          }));
+        }));
 
           this.setState(state => ({ addComment: "" }));
 
@@ -297,6 +296,7 @@ class VideoPlayer extends Component {
                                 }
                                 title={this.state.currentStep.stepTitle}
                                 subheader={this.state.currentStep.stepDescription}
+                                style={{ alignItems: "normal" }}
                             />
                             <CardActions>
                                 {

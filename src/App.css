@@ -12,6 +12,8 @@
 .step-avatar {
     color: #fff!important;
     background-color: #0eab55!important;
+    align-self: baseline!important;
+    margin-top: 5px;
 }
 
 .list-wrapper {
@@ -48,4 +50,36 @@
 .current-step-avatar {
     color: rgba(0, 0, 0, 0.54)!important;
     background-color: #ffffff!important;
+    align-self: baseline!important;
+    margin-top: 5px;
+}
+
+.step-card-details {
+    padding-top: 20px;
+}
+
+.step-card-details > div {
+    margin-bottom: 20px;
+}
+
+.step-card-timestamps {
+    display: flex;
+    margin-top: 16px;
+}
+
+.step-card-timestamps div {
+    flex-basis: 50%;
+}
+
+.step-card-timestamps .step-card-timestamp:first-child {
+    margin-right: 30px;
+}
+
+.maker-created-step-times > span {
+    display: flex;
+    padding-left: 72px;
+}
+
+.maker-created-step-times > span h3:first-child {
+    margin-right: 16px;
 }
