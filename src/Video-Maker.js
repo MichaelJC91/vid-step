@@ -241,6 +241,8 @@ class VideoMaker extends Component {
                 ...state.createStepProps,
                 stepName: "",
                 stepDescription: "",
+                start: state.createStepProps.end,
+                end: state.videoProps.lastNodeEnd,
                 startIndex: state.createStepProps.startIndex + 1,
                 endIndex: state.createStepProps.endIndex + 1
             },
