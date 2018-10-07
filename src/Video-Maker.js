@@ -120,7 +120,7 @@ class VideoMaker extends Component {
 
         const { value, dragging, index, ...restProps } = props;
 
-        console
+        console.log(props)
 
         if(dragging && index === this.state.createStepProps.startIndex) {
             this.seekVideo(value);
@@ -282,7 +282,7 @@ class VideoMaker extends Component {
                                             onChange={(e) => this.onSliderChange(e)} 
                                             // onAfterChange={(e) => this.setVideoPlayback(e)}
                                             max={ this.state.videoProps.lastNodeEnd } 
-                                            min={0} 
+                                            min={0}
                                         />
                                     </div>
                                     
