@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AddVideoIcon from '@material-ui/icons/VideoCall';
 import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
@@ -30,7 +29,7 @@ class Home extends Component {
                         <Link to="/player" style={{ textDecoration: 'none' }}>
                             <CardActionArea>
                                 <CardMedia
-                                image="https://picsum.photos/400/200?random"
+                                image="https://source.unsplash.com/ZPfd3ZobOc0/400x200"
                                 title="How to make peanut butter toast"
                                 style={{ height: 200 }}
                                 />
