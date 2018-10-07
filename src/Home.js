@@ -56,7 +56,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <AppBar position="static">
+                <AppBar position="sticky">
                     <Toolbar>
                         <Typography variant="title" color="inherit" style={{ flexGrow: 1 }}>
                             VidStep

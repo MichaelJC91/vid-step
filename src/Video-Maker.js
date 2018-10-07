@@ -120,8 +120,6 @@ class VideoMaker extends Component {
 
         const { value, dragging, index, ...restProps } = props;
 
-        console.log(props)
-
         if(dragging && index === this.state.createStepProps.startIndex) {
             this.seekVideo(value);
             this.updateStartTime(value);
@@ -136,7 +134,7 @@ class VideoMaker extends Component {
 
         <Tooltip
             prefixCls="rc-slider-tooltip"
-            overlay={value}
+            overlay={this.makeTime(value)}
             visible={dragging}
             placement="top"
             key={index}
